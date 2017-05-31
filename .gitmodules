@@ -1,0 +1,6 @@
+[submodule "src/rust-clippy"]
+	path = src/rust-clippy
+	url = git@github.com:Manishearth/rust-clippy.git
+[submodule "src/rustfmt"]
+	path = src/rustfmt
+	url = git@github.com:rust-lang-nursery/rustfmt.git

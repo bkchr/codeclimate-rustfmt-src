@@ -1,0 +1,6 @@
+Starting analysis
+
+== src/lib.rs (1 issue) ==
+1: Your code does not pass rustfmt. Please format your code! [rustfmt]
+
+Analysis complete! Found 1 issue.

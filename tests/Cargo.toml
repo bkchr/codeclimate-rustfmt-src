@@ -1,0 +1,7 @@
+[package]
+name = "tests"
+version = "0.1.0"
+authors = ["Bastian Köcher <git@kchr.de>"]
+
+[dependencies]
+log = "0.3"
