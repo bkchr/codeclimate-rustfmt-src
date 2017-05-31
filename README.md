@@ -1,2 +1,2 @@
-# codeclimate-rust-clippy
-A codeclimate engine that runs rust clippy on the source code.
+# codeclimate-rustfmt
+A codeclimate engine that runs rustfmt on the source code.
