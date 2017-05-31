@@ -9,6 +9,7 @@ use std::fs::{File, read_dir};
 use std::io::Read;
 use std::path::Path;
 use std::ffi::OsStr;
+use std::io::Write;
 
 use serde_json::{Value};
 
@@ -63,12 +64,12 @@ fn print_issue<'a>(issue: &'a Issue) {
 }
 
 fn get_include_paths() -> Vec<String> {
-    if let Ok(mut config) = File::open("/config.js") {
+    if let Ok(mut config) = File::open("/config.json") {
 
         let mut content = String::new();
         config
             .read_to_string(&mut content)
-            .expect("Error reading /config.js");
+            .expect("Error reading /config.json");
 
         let json: Value = serde_json::from_str(&content).expect("Error converting content to json");
         json["include_paths"]
