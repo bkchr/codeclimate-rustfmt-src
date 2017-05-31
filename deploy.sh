@@ -17,7 +17,7 @@ cp -f ../main.sh .
 cp -f ../install-rust.sh .
 
 git add .
-if ! git status -s
+if ! git diff-index --quiet HEAD --;
 then
     git commit -am "$GIT_COMMIT_MSG_HEADER" -m "$GIT_COMMIT_MSG_CONTENT"
     git push
