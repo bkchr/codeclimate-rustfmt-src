@@ -16,9 +16,9 @@ cp -f ../engine.json .
 cp -f ../main.sh .
 cp -f ../install-rust.sh .
 
-if ! git diff --quiet
+git add .
+if ! git status -s
 then
-    git add .
     git commit -am "$GIT_COMMIT_MSG_HEADER" -m "$GIT_COMMIT_MSG_CONTENT"
     git push
 fi
