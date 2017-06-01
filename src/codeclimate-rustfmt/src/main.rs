@@ -10,7 +10,7 @@ use std::io::Read;
 use std::path::Path;
 use std::ffi::OsStr;
 
-use serde_json::{Value};
+use serde_json::Value;
 
 // The path to where we copy the source in the docker container
 const DOCKER_SRC_PATH: &'static str = "/code/";
@@ -86,11 +86,24 @@ fn get_include_paths() -> Vec<String> {
     }
 }
 
+fn rustfmt_toml_exists() -> bool {
+    let path = Path::new(DOCKER_SRC_PATH);
+    path.join("rustfmt.toml").exists() || path.join(".rustfmt.toml").exists()
+}
+
 fn run_rustfmt_for_file(file: &Path) -> bool {
+    let config_path = format!("--config-path={}", DOCKER_SRC_PATH);
+
+    let mut args = vec!["--write-mode=diff"];
+
+    if rustfmt_toml_exists() {
+        args.push(&config_path);
+    }
+
+    args.push(file.to_str().unwrap());
+
     Command::new("/app/rustfmt")
-        .args(&["--write-mode=diff",
-                &format!("--config-path={}", DOCKER_SRC_PATH),
-                file.to_str().unwrap()])
+        .args(&args)
         .output()
         .expect("Error executing rustfmt")
         .status
